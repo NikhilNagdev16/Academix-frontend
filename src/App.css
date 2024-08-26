@@ -83,6 +83,12 @@
 .college__logo img{
     height: 50px;
 }
+.btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+}
 .card{
     display: flex;
     flex-direction: column;

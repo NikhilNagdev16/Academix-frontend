@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import logo from "../assets/img/logo.jpeg";
 import Sidebar from "../components/Sidebar";
 import Card from "../components/Card";
+import CardButton from "../components/CardButton";
 
 const WebsiteAdminDash = () => {
     return(
@@ -28,8 +29,8 @@ const WebsiteAdminDash = () => {
                             <h3>Manage</h3>
                         </div>
                         <div className="App-content">
-                            <Card num={"+"} til={"Add College"}/>
-                            <Card num={"%"} til={"Manage College"}/>
+                            <CardButton num={"+"} til={"Add College"}/>
+                            <CardButton num={"%"} til={"Manage College"}/>
                         </div>
                     </div>
                 </div>
