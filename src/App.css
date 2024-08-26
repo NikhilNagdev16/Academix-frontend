@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+.App{
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    height: max-content;
+    background-color: #21222D;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-content{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container{
+    display: flex;
+    height: 100vh;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.sidebar{
+    /*margin-top: 10px;*/
+    width: 220px;
+    padding: 20px;
+    border-right: 1px solid white;
+    color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.user__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.user__avatar{
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+}
+.user__avatar img{
+    border-radius: 35px;
+    height: 50px;
+}
+.user__name{
+    /*padding: 10px;*/
+    margin: 10px;
+}
+.user__role{
+    /*padding: 10px;*/
+    margin: 10px;
+}
+.header{
+    background-color: transparent;
+    color: white;
+    display: flex;
+    /*width: 100%;*/
+     justify-content: space-between;
+    margin-left: 220px;
+    /*margin: auto;*/
+    /*padding: 1vh;*/
+}
+.header__logo{
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 35px;
+}
+.header__logo img{
+    height: 50px;
+}
+.header__college{
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+.college__title{
+    padding: 10px;
+}
+.college__logo{
+    padding: 10px;
+    border-radius: 35px;
+}
+.college__logo img{
+    height: 50px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: max-content;
+    width: max-content;
+    margin: 15px;
+    padding: 15px;
+    background-color: #171821;
+    border-radius: 20px;
+}
+.card-num{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-num h3{
+    color: aliceblue;
+}
+.card-til{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-til h3{
+    color: aliceblue;
 }
