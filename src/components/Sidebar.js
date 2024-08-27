@@ -13,6 +13,10 @@ const Sidebar = ({avatar,name,role}) => {
                 <div className="user__name"><h3>{name}</h3></div>
                 <div className="user__role">{role}</div>
             </div>
+            <div className="options">
+                <button >Home</button>
+                <button >Logout</button>
+            </div>
         </div>
     );
 }

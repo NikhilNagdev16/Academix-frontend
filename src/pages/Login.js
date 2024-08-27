@@ -1,51 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
+const Login = () => {
+    const navigate = useNavigate();
 
-import './login.css'
-
-function Login(){
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const [res,setRes] = useState([]);
-
-    const handleLogin=(e)=>{
-        e.preventDefault();
-
-        alert(res);
+    const LoginFunc = (event) => {
+        event.preventDefault();
+            
+        navigate("/");
     };
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('http://localhost:8080/users');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            setRes(data);
-        }
-        fetchData();
-    }, []);
-    return  (
-        <div className="login">
-            <div className="loginContainer">
-                <div className="title">Login</div>
-                <div className="input">
-                    <form onSubmit={handleLogin}>
-                        <div className="inputfield">
-                            <input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+
+    return(
+        <div className="loginBody">
+            <div className="loginBox">
+                <div className="login__title">
+                    <h2>Login</h2>
+                </div>
+                <div className="login__form">
+                    <form className="login__form" onSubmit={LoginFunc}>
+                        <div className="login__form__inputs">
+                            <input type="text" name="username" placeholder="Username" />
+                            <input type="password" name="password" placeholder="Password" />
                         </div>
-                        <div className="inputfield">
-                            <input placeholder="Password" type="password"
-                                   onChange={(e) => setPassword(e.target.value)}/>
-                        </div>
-                        <div className="submitbutton">
-                            <input type="submit" value="Login"/>
+                        <div className="login__form__submit">
+                            <button type="submit">Login</button>
                         </div>
                     </form>
+                    <div className="forgot">
+                        <a href="#">Forgot Password?</a>
+                    </div>
                 </div>
-
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Login;
