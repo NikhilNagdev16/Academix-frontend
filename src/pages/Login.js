@@ -14,7 +14,8 @@ const Login = () => {
         <div className="loginBody">
             <div className="loginBox">
                 <div className="login__title">
-                    <h2>Login</h2>
+                    <h1>AcademiX</h1>
+                    <h3>Login</h3>
                 </div>
                 <div className="login__form">
                     <form className="login__form" onSubmit={LoginFunc}>

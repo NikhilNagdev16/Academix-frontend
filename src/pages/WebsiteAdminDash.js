@@ -24,10 +24,10 @@ const WebsiteAdminDash = () => {
                             <h3>Records</h3>
                         </div>
                         <div className="App-content">
-                            <Card num={10} til={"Num OF College"}/>
-                            <Card num={100} til={"Num OF Users"}/>
-                            <Card num={5} til={"Num OF Inactive Users"}/>
-                            <Card num={90} til={"Num OF Students"}/>
+                            <Card num={10} til={"Total Colleges"}/>
+                            <Card num={100} til={"Total Users"}/>
+                            <Card num={5} til={"Inactive Users"}/>
+                            <Card num={90} til={"Total Students"}/>
                         </div>
                     </div>
                     <div className="App">
