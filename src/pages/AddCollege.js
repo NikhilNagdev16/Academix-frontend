@@ -1,77 +1,186 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import logo from "../assets/img/logo.jpeg";
 import Sidebar from "../components/Sidebar";
-import Card from "../components/Card";
-import CardButton from "../components/CardButton";
-import {Form} from "react-router-dom";
-import Login from "./Login";
+import { useNavigate } from "react-router-dom";
+import { getCookie } from "../components/cookieUtil";
 
 const AddCollege = () => {
-    return(
-      <>
-          <Header collegeName={"collegeName"} collegeLogo={logo}/>
-          <div className="container">
-              <Sidebar avatar={logo} name={"Nikhil Nagdev"} role={"WebSite Admin"}/>
+    const navigate = useNavigate();
 
-              <div className="main">
-                  <div className="App">
-                      <div className="FormBox">
-                          <div className="FormTitle">
-                              <div className="App-header">
-                                  <h2> Add College </h2>
-                              </div>
+    useEffect(() => {
+        if (getCookie("role") !== 'websiteadmin') {
+            navigate('/');
+        }
+    }, [navigate]);
 
+    const [collegeData, setCollegeData] = useState({
+        college_name: "",
+        college_address: "",
+        college_phone: "",
+        college_email: "",
+        noOfClasses: 0
+    });
 
-                          </div>
-                          <div className="FormTitle">
-                              <div className="App-header">
-                                  <h4>College Details</h4>
-                              </div>
-                              <div className="App-header">
-                                  <h4>College Admin Details</h4>
-                              </div>
-                          </div>
-                          <div className="FormFields">
-                              <div className="App-content">
-                                  <div className="form__inputs">
-                                      <form>
-                                          <input type="text" name='college_name' placeholder="college name"/>
-                                          <input type="text" name='college_address' placeholder="college address"/><br/>
-                                          <input type="text" name='email' placeholder="college email"/>
-                                          <input type="text" name='phone' placeholder="college phone"/><br/>
-                                          <input type="text" name='phone' placeholder="college phone"/>
-                                          <input type="number" name='classes' placeholder="No Of Classes"/><br/>
-                                      </form>
-                                  </div>
-                              </div>
+    const [adminData, setAdminData] = useState({
+        email: "",
+        name: "",
+        password: "",
+        role: "collegeadmin"
+    });
 
-                              <div className="App-content">
-                                  <div className="form__inputs">
-                                      <form>
-                                          <input type="text" name='User Name' placeholder="Admin name"/>
-                                          <input type="text" name='college_address' placeholder="Admin password"/><br/>
-                                          <input type="text" name='email' placeholder="Admin email"/>
-                                          <input type="text" name='phone' placeholder="Admin phone"/><br/>
+    const handleCollegeChange = (e) => {
+        setCollegeData({
+            ...collegeData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="FormTitle">
-                              <div className="App-header">
-                                  <button>Add College</button>
-                              </div>
+    const handleAdminChange = (e) => {
+        setAdminData({
+            ...adminData,
+            [e.target.name]: e.target.value
+        });
+    };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-                          </div>
-                      </div>
-                  </div>
+        const requestBody = {
+            user: adminData,
+            college: collegeData
+        };
 
+        try {
+            const response = await fetch('http://localhost:8080/addCollege', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
 
-              </div>
-          </div>
-      </>
+            if (response.ok) {
+                // Handle success
+                alert('College added successfully!');
+                setCollegeData({
+                    college_name: "",
+                    college_address: "",
+                    college_phone: "",
+                    college_email: "",
+                    noOfClasses: 0
+                });
+                setAdminData({
+                    email: "",
+                    name: "",
+                    password: "",
+                    role: "collegeadmin"
+                });
+            } else {
+                // Handle error
+                const errorData = await response.json();
+                alert(`Failed to add college: ${errorData.message}`);
+            }
+        } catch (error) {
+            alert(`Failed to add college: ${error.message}`);
+        }
+    };
+
+    return (
+        <>
+            <Header collegeName={"collegeName"} collegeLogo={logo}/>
+            <div className="container">
+                <Sidebar avatar={logo}/>
+
+                <div className="main">
+                    <div className="App">
+                        <div className="FormBox">
+                            <div className="FormTitle">
+                                <div className="App-header">
+                                    <h2>Add College</h2>
+                                </div>
+                            </div>
+                            <div className="FormTitle">
+                                <div className="App-header">
+                                    <h4>College Details</h4>
+                                </div>
+                                <div className="App-header">
+                                    <h4>College Admin Details</h4>
+                                </div>
+                            </div>
+                            <div className="FormFields">
+                                <div className="App-content">
+                                    <div className="form__inputs">
+                                        <form onSubmit={handleSubmit}>
+                                            <input
+                                                type="text"
+                                                name='college_name'
+                                                placeholder="College Name"
+                                                value={collegeData.college_name}
+                                                onChange={handleCollegeChange}
+                                            />
+                                            <input
+                                                type="text"
+                                                name='college_address'
+                                                placeholder="College Address"
+                                                value={collegeData.college_address}
+                                                onChange={handleCollegeChange}
+                                            /><br/>
+                                            <input
+                                                type="text"
+                                                name='college_email'
+                                                placeholder="College Email"
+                                                value={collegeData.college_email}
+                                                onChange={handleCollegeChange}
+                                            />
+                                            <input
+                                                type="text"
+                                                name='college_phone'
+                                                placeholder="College Phone"
+                                                value={collegeData.college_phone}
+                                                onChange={handleCollegeChange}
+                                            /><br/>
+                                            <input
+                                                type="number"
+                                                name='noOfClasses'
+                                                placeholder="No Of Classes"
+                                                value={collegeData.noOfClasses}
+                                                onChange={handleCollegeChange}
+                                            /><br/>
+
+                                            <input
+                                                type="text"
+                                                name='name'
+                                                placeholder="Admin Name"
+                                                value={adminData.name}
+                                                onChange={handleAdminChange}
+                                            />
+                                            <input
+                                                type="password"
+                                                name='password'
+                                                placeholder="Admin Password"
+                                                value={adminData.password}
+                                                onChange={handleAdminChange}
+                                            /><br/>
+                                            <input
+                                                type="text"
+                                                name='email'
+                                                placeholder="Admin Email"
+                                                value={adminData.email}
+                                                onChange={handleAdminChange}
+                                            />
+
+                                            <button type="submit">Add College</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
+
 export default AddCollege;

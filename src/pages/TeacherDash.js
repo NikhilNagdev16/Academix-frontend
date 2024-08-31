@@ -1,16 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "../components/Header";
 import logo from "../assets/img/logo.jpeg";
 import Sidebar from "../components/Sidebar";
 import Card from "../components/Card";
 import CardButton from "../components/CardButton";
+import {useNavigate} from "react-router-dom";
+import {getCookie} from "../components/cookieUtil";
 
 const TeacherDash = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (getCookie('role')!= 'teacher') {
+            navigate('/');
+        }
+    }, [navigate]);
+
+    if (!getCookie("userID")) {
+        return null; // Render nothing while redirecting
+    }
     return(
         <>
             <Header collegeName={"collegeName"} collegeLogo={logo}/>
             <div className="container">
-                <Sidebar avatar={logo} name={"Nikhil Nagdev"} role={"Teacher"}/>
+                <Sidebar avatar={logo}/>
                 <div className="main">
                     <div className="App">
                         <div className="App-header">
