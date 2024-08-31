@@ -10,21 +10,27 @@
     align-items: center;
     justify-content: center;
     background-color: #21222D;
-    padding: 30px;
+    padding: 70px;
     width: max-content;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 .login__title{
     color: white;
     padding: 10px;
-    margin: 10px;
+    /*margin: 10px;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .login__form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     /*margin: 20px;*/
-    padding: 20px;
+    /*padding: 20px;*/
+    padding-left: 20px;
+    padding-right: 32px;
 }
 .login__form__inputs{
     display: flex;
@@ -41,7 +47,7 @@
     padding: 10px;
     margin: 10px;
     background-color: #171821;
-    width: 100%;
+    width: 150%;
     color: white;
     border-radius: 10px;
 }
@@ -58,7 +64,7 @@
     margin: 10px;
     background-color: #171821;
     color: white;
-    width: 90%;
+    width: 110%;
     border-radius: 10px;
 }
 .forgot{
@@ -71,6 +77,50 @@
     color: white;
     padding: 10px;
 }
+.FormBox{
+    display: flex;
+    flex-direction: column;
+}
+.FormTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*padding-left: 30px;*/
+    /*padding-right: 30px;*/
+}
+.FormTitle button{
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+    background-color: #171821;
+    color: white;
+    width: 110%;
+    border-radius: 10px;
+}
+.FormFields{
+    display: flex;
+    flex-direction: row;
+}
+.form__inputs{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    /*gap: 10px;*/
+    justify-content: space-around;
+    align-items: center;
+
+}
+.form__inputs input{
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+    background-color: #171821;
+    /*width: 150%;*/
+    color: white;
+    border-radius: 10px;
+}
 .App{
     display: flex;
     flex-direction: column;
@@ -81,6 +131,17 @@
     background-color: #21222D;
     /*justify-content: space-evenly;*/
 }
+.FormCon{
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    background-color: #21222D;
+    /*justify-content: space-evenly;*/
+}
+
 .App-content{
     padding: 20px;
     display: flex;
