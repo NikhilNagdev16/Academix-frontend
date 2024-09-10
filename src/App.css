@@ -67,6 +67,22 @@
     width: 110%;
     border-radius: 10px;
 }
+.form__submit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form__submit button{
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+    background-color: #171821;
+    color: white;
+    /*width: 110%;*/
+    border-radius: 10px;
+}
 .forgot{
     color: white;
     display: flex;
@@ -142,13 +158,15 @@
     /*justify-content: space-evenly;*/
 }
 
-.App-content{
+.App-content {
     padding: 20px;
     display: flex;
     flex-direction: row;
+
     gap: 50px;
-    /*justify-content: space-between;*/
 }
+
+
 .container{
     display: flex;
     height: 100vh;

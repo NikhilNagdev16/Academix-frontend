@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {setCookie} from "../components/cookieUtil";
+import { getCookie, setCookie } from "../components/cookieUtil";
 
 const Login = () => {
     const navigate = useNavigate();
+
+    const navigateByRole = (role) => {
+        switch (role) {
+            case "collegeadmin":
+                navigate("/cdash");
+                break;
+            case "websiteadmin":
+                navigate("/wsdash");
+                break;
+            case "teacher":
+                navigate("/tdash");
+                break;
+            case "student":
+                navigate("/sdash");
+                break;
+            default:
+                break;
+        }
+    };
+
+    // Check if user is already logged in
+    useEffect(() => {
+        const role = getCookie("role");
+        if (role) {
+            navigateByRole(role);
+        }
+    }, []); // Empty dependency array ensures this runs only once on mount
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -13,40 +41,30 @@ const Login = () => {
 
         try {
             const response = await fetch(`http://localhost:8080/login?username=${username}&password=${password}`, {
-                method: "POST", // Using GET since parameters are in the URL
+                method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
             if (!response.ok) {
-                throw new Error("Login failed");
+                throw new Error("Login failed. Please check your username and password.");
             }
 
             const data = await response.json();
 
-                if(data.userID) {
-                    setCookie("userID", data.userID, 7);
-                    setCookie("role", data.role, 7);
-                    setCookie("name", data.name, 7);
-                    setCookie("collegeId", data.collegeId, 7);
-                    if (data.role=="websiteadmin") {
-                        navigate('/wsdash');
-                    }
-                    else if(data.role=="teacher") {
-                        navigate('/tdash');
-                    }
-                    else if(data.role=="student") {
-                        navigate('/sdash');
-                    }
-                    else if(data.role=="collegeadmin") {
-                        navigate('/cdash');
-                    }
-                }
-
+            if (data.userID) {
+                setCookie("userID", data.userID, 7);
+                setCookie("role", data.role, 7);
+                setCookie("name", data.name, 7);
+                setCookie("collegeId", data.collegeId, 7);
+                navigateByRole(data.role);
+            } else {
+                setError("Login failed. Invalid credentials.");
+            }
         } catch (error) {
             console.error("Error:", error);
-            setError("An error occurred during login.");
+            setError(error.message);
         }
     };
 
@@ -81,7 +99,7 @@ const Login = () => {
                     </form>
                     {error && <div className="error">{error}</div>}
                     <div className="forgot">
-                        <a href="#">Forgot Password?</a>
+                        <a href="/ForgotPassword">Forgot Password?</a>
                     </div>
                 </div>
             </div>

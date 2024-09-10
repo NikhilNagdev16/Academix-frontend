@@ -16,7 +16,9 @@ const navigate = useNavigate();
                 <div className="user__role">{getCookie('role')}</div>
             </div>
             <div className="options">
-                <button >Home</button>
+                <button onClick={()=>{
+                    navigate('/');
+                }} >Home</button>
                 <button onClick={()=>{
                     deleteCookie('userID');
                     deleteCookie('role');
