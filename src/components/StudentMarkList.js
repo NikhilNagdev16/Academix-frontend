@@ -199,11 +199,13 @@ const StudentMarksList = ({ subjectId, courseId }) => {
                 </div>
             </div>
             <div className="App">
-                <div className="App-content">
-                    <div className="form__submit">
-                    <button onClick={handleSubmitMarks}>Submit Marks</button>
+                <center>
+                    <div className="App-content">
+                        <div className="form__submit">
+                            <button onClick={handleSubmitMarks}>Submit Marks</button>
+                        </div>
                     </div>
-                </div>
+                </center>
             </div>
         </>
     );

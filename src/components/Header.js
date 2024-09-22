@@ -55,12 +55,21 @@ const Header = () => {
     if (error) {
         return <div>Error: {error}</div>;
     }
+    const handleClick = () => {
+        window.open("http://localhost:8888/login/login.php", "_blank", "noopener,noreferrer");
+    };
 
     return (
         <header className="header">
             <div className="header__logo">
                 <img className="header__logo" src={logo} alt="logo"/>
-                <button><img className="header__logo" src={clgfylogo} alt="clgfy logo"/></button>
+                <img
+                    className="header__logo"
+                    src={clgfylogo}
+                    alt="clgfy logo"
+                    onClick={handleClick}
+                    style={{cursor: 'pointer'}} // Optional: shows pointer on hover
+                />
             </div>
 
             <div className="header__college">
