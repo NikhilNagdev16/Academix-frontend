@@ -14,28 +14,41 @@ import AddSubject from "./pages/AddSubject";
 import AddStudent from "./pages/AddStudent";
 import CreateSchedule from "./pages/CreateSchedule";
 import MarkAttendance from "./pages/MarkAttendance";
+import ViewAttendance from "./pages/ViewAttendance";
+import ManageCourses from "./pages/ManageCourses";
+import StudentDash from "./pages/StudentDash";
+import ViewStudentAttendance from "./pages/ViewStudentAttendance";
+import MarkExam from "./pages/MarkExam";
+import ViewMarks from "./pages/ViewMarks";
+
 
 const App = () => {
     return (
-       // <WebsiteAdminDash/>
-       // //  <Login/>
-        <Router>
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/wsdash" element={<WebsiteAdminDash />} />
-                <Route path="/cdash" element={<CollegeAdminDash />} />
-                <Route path="/tdash" element={<TeacherDash />} />
-                <Route path="/addCollege" element={<AddCollege />} />
-                <Route path="/addTeacher" element={<AddTeacher />} />
-                <Route path="/addCourse" element={<AddCourse />} />
-                <Route path="/addSubject" element={<AddSubject />} />
-                <Route path="/addStudent" element={<AddStudent />} />
-                <Route path="/createSchedule" element={<CreateSchedule />} />
-                <Route path="/markAttendance" element={<MarkAttendance />} />
-                <Route path="/forgotPassword" element={<ForgotPassword />} />
-                <Route path="/manageCollege" element={<ManageCollege />} />
-            </Routes>
-        </Router>
+        <>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/wsdash" element={<WebsiteAdminDash />} />
+                    <Route path="/cdash" element={<CollegeAdminDash />} />
+                    <Route path="/tdash" element={<TeacherDash />} />
+                    <Route path="/sdash" element={<StudentDash />} />
+                    <Route path="/addCollege" element={<AddCollege />} />
+                    <Route path="/addTeacher" element={<AddTeacher />} />
+                    <Route path="/addCourse" element={<AddCourse />} />
+                    <Route path="/addSubject" element={<AddSubject />} />
+                    <Route path="/addStudent" element={<AddStudent />} />
+                    <Route path="/createSchedule" element={<CreateSchedule />} />
+                    <Route path="/markAttendance" element={<MarkAttendance />} />
+                    <Route path="/markExam" element={<MarkExam />} />
+                    <Route path="/forgotPassword" element={<ForgotPassword />} />
+                    <Route path="/manageCollege" element={<ManageCollege />} />
+                    <Route path="/manageCourse" element={<ManageCourses />} />
+                    <Route path="/viewAttendance" element={<ViewAttendance />} />
+                    <Route path="/viewStudentAttendance" element={<ViewStudentAttendance />} />
+                    <Route path="/viewStudentMarks" element={<ViewMarks />} />
+                </Routes>
+            </Router>
+        </>
     );
 };
 

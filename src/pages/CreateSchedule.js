@@ -91,14 +91,17 @@ const CreateSchedule = () => {
                                             <DropdownCourseWithFetch onSelect={handleCourseSelect}/>
                                             <DropdownSubjectWithFetch onSelect={handleSubjectSelect}
                                                                       courseId={course_id}/>
-                                            <DayOfWeekDropdown onSelect={handleDaySelect} />
+                                            <DayOfWeekDropdown onSelect={handleDaySelect}/>
                                             <input type="time" name="start_time"
                                                    value={start_time}
                                                    onChange={(e) => setStartTime(e.target.value)}/>
                                             <input type="time" name="end_time"
                                                    value={end_time}
                                                    onChange={(e) => setEndTime(e.target.value)}/>
-                                            <button type="submit">Create Schedule</button>
+                                            <br/>
+                                            <div className="form__submit">
+                                                <button type="submit">Create Schedule</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

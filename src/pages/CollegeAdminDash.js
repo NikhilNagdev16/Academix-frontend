@@ -31,6 +31,9 @@ const navigate = useNavigate();
     function createSheduleFunc() {
         navigate('/createSchedule');
     }
+    function manageCourseFunc() {
+        navigate('/managecourse');
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -100,9 +103,9 @@ const navigate = useNavigate();
                             <h3>Records</h3>
                         </div>
                         <div className="App-content">
-                            <Card num={Courses} til={"Num OF Courses"} />
-                            <Card num={Students} til={"Num OF Students"} />
-                            <Card num={Teachers} til={"Num OF Teachers"} />
+                            <Card num={Courses} til={"No. Of Courses"}/>
+                            <Card num={Students} til={"No. Of Students"}/>
+                            <Card num={Teachers} til={"No. Of Teachers"}/>
                         </div>
                     </div>
                     <div className="App">
@@ -110,11 +113,20 @@ const navigate = useNavigate();
                             <h3>Manage</h3>
                         </div>
                         <div className="App-content">
-                            <CardButton num={"+"} til={"Add Course"} onclickfunc={addCourseFunc} />
-                            <CardButton num={"%"} til={"Add Teacher"} onclickfunc={addTeacherFunc} />
-                            <CardButton num={"%"} til={"Add Subject"} onclickfunc={addSubjectFunc} />
+                            <CardButton num={"+"} til={"Add Course"} onclickfunc={addCourseFunc}/>
+                            <CardButton num={"%"} til={"Add Teacher"} onclickfunc={addTeacherFunc}/>
+                            <CardButton num={"%"} til={"Add Subject"} onclickfunc={addSubjectFunc}/>
                             <CardButton num={"%"} til={"Add Student"} onclickfunc={addStudentFunc}/>
+
+                        </div>
+                    </div>
+                    <div className="App">
+                        <div className="App-header">
+                            <h3>Manage</h3>
+                        </div>
+                        <div className="App-content">
                             <CardButton num={"%"} til={"Create Schedule"} onclickfunc={createSheduleFunc}/>
+                            <CardButton num={"%"} til={"Manage Courses"} onclickfunc={manageCourseFunc}/>
                         </div>
                     </div>
                 </div>

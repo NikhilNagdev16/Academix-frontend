@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const ScheduleTableCourse = () => {
+const StudentInCourseDataTable = ({courseId}) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(""); // For handling errors
-
     useEffect(() => {
         const fetchColleges = async () => {
             try {
-                const response = await fetch('http://localhost:8080/colleges', {
+
+                const response = await fetch(`http://localhost:8080/studentByCourse?courseId=${courseId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -28,15 +28,13 @@ const ScheduleTableCourse = () => {
         };
 
         fetchColleges(); // Fetch data when component mounts
-    }, []); // Empty dependency array ensures this runs only once
+    }, []);
 
     const renderTableRows = () => {
-        return data.map((college) => (
-            <tr key={college.college_idf}>
-                <td>{college.college_id}</td>
-                <td>{college.college_name}</td>
-                <td>{college.college_email}</td>
-                <td>{college.college_phone}</td>
+        return data.map((student) => (
+            <tr key={student.user_id}>
+                <td>{student.rollNo}</td>
+                <td>{student.name}</td>
             </tr>
         ));
     };
@@ -47,10 +45,8 @@ const ScheduleTableCourse = () => {
             <table border="1" cellPadding="10" cellSpacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Roll No</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,4 +57,4 @@ const ScheduleTableCourse = () => {
     );
 };
 
-export default ScheduleTableCourse;
+export default StudentInCourseDataTable;

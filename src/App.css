@@ -1,3 +1,9 @@
+.homemade-apple-regular {
+    font-family: "Homemade Apple", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .loginBody{
     height: 100vh;
     display: flex;
@@ -22,6 +28,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.login__title p{
+    font-size: 30px;
+    font-color: #ba3838;
+    font-family: "Homemade Apple", system-ui;
 }
 .login__form{
     display: flex;

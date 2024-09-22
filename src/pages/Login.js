@@ -72,7 +72,7 @@ const Login = () => {
         <div className="loginBody">
             <div className="loginBox">
                 <div className="login__title">
-                    <h1>AcademiX</h1>
+                    <p>AcademiX</p>
                     <h3>Login</h3>
                 </div>
                 <div className="login__form">

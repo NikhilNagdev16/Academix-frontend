@@ -75,7 +75,7 @@ const AddSubject = () => {
                 <div className="main">
                     <div className="App">
                         <div className="App-header">
-                            <h3>Add Subject</h3>
+                            <center><h3>Add Subject</h3></center>
                         </div>
                         <div className="app-content">
                             <form onSubmit={handleSubmit}>
@@ -119,8 +119,9 @@ const AddSubject = () => {
                                             value={practical_marks}
                                             onChange={(e) => setPracticalMarks(e.target.value)}
                                         />
-
+                                        <br/>
                                         <DropdownCourseWithFetch onSelect={handleCourseSelect} />
+                                        <br/>
                                         <DropdownTeacherWithFetch onSelect={handleTeacherSelect} />
                                     </div>
                                     <div className="form__submit">

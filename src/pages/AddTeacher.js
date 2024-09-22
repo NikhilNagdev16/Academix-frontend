@@ -71,7 +71,7 @@ const AddTeacher = () => {
                         <div className="FormBox">
                             <div className="FormTitle">
                                 <div className="App-header">
-                                    <h2>Add College</h2>
+                                    <h2>Add Teacher</h2>
                                 </div>
                             </div>
                             <div className="FormTitle">
@@ -99,15 +99,18 @@ const AddTeacher = () => {
                                                 value={adminData.password}
                                                 onChange={handleAdminChange}
                                             /><br/>
-                                            <input
-                                                type="text"
-                                                name='email'
-                                                placeholder="Teacher Email"
-                                                value={adminData.email}
-                                                onChange={handleAdminChange}
-                                            /><br/>
-
-                                            <button type="submit">Add College</button>
+                                            <center>
+                                                <input
+                                                    type="text"
+                                                    name='email'
+                                                    placeholder="Teacher Email"
+                                                    value={adminData.email}
+                                                    onChange={handleAdminChange}
+                                                /><br/>
+                                                <div className="form__submit">
+                                                    <button type="submit">Add Teacher</button>
+                                                </div>
+                                            </center>
                                         </form>
                                     </div>
                                 </div>

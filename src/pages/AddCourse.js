@@ -98,15 +98,18 @@ const AddCourse = () => {
                                                 // value={CourseData.semester}
                                                 onChange={handleCourseChange}
                                             /><br/>
-                                            <input
-                                                type="number"
-                                                name='active_semester'
-                                                placeholder="Active Semester"
-                                                // value={CourseData.active_semester}
-                                                onChange={handleCourseChange}
-                                            /><br/>
-
-                                            <button type="submit">Add Course</button>
+                                            <center>
+                                                <input
+                                                    type="number"
+                                                    name='active_semester'
+                                                    placeholder="Active Semester"
+                                                    // value={CourseData.active_semester}
+                                                    onChange={handleCourseChange}
+                                                /><br/>
+                                                <div className="form__submit">
+                                                    <button type="submit">Add Course</button>
+                                                </div>
+                                            </center>
                                         </form>
                                     </div>
                                 </div>

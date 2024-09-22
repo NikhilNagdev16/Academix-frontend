@@ -30,7 +30,7 @@ const DropdownTeacherWithFetch = ({ onSelect }) => {
 
     return (
         <select value={selectedId} onChange={handleChange}>
-            <option value="" disabled>Select an option</option>
+            <option value="" disabled>Select a Teacher </option>
             {options.map((option) => (
                 <option key={option.user_id} value={option.user_id}>
                     {option.name}

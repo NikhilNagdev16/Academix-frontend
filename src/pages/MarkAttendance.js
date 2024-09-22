@@ -3,18 +3,20 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../components/cookieUtil";
-import DropdownCourseWithFetch from "../components/DropdownCourseWithFetch";
-import DropdownSubjectWithFetch from "../components/DropdownSubjectWithFetch";
-import DayOfWeekDropdown from "../components/DayOfWeekDropown";
 import DropdownSubjectusingTeacherWithFetch from "../components/DropdownSubjectusingTeacherWithFetch";
+import DayOfWeekDropdown from "../components/DayOfWeekDropown";
+import DropdownTimeWithFetch from "../components/DropdownTimeWithFetch";
+import StudentAttendanceList from "../components/StudentAttendanceList";
+import scheduleTableCourse from "../components/ScheduleTableCourse";
 
 const MarkAttendance = () => {
     const navigate = useNavigate();
-    const [course_id, setSelectedCourseId] = useState("");
-    const [subject_id, setSelectedSubjectId] = useState("");
+    const [courseId, setSelectedCourseId] = useState("");
+    const [subjectId, setSelectedSubjectId] = useState("");
     const [day, setSelectedDay] = useState("");
+    const [timeId, setSelectedTimeId] = useState(""); // For storing selected time
     const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
+    const [attendanceData, setAttendanceData] = useState([]);
 
     useEffect(() => {
         if (getCookie("role") !== 'teacher') {
@@ -22,6 +24,7 @@ const MarkAttendance = () => {
         }
     }, [navigate]);
 
+    // Handlers for dropdown selections
     const handleSubjectSelect = (selectedId) => {
         setSelectedSubjectId(selectedId);
         console.log("Selected Subject ID:", selectedId);
@@ -32,24 +35,35 @@ const MarkAttendance = () => {
         console.log("Selected day:", selectedDay);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleTimeSelect = (scheduleId, courseId) => {
+        setSelectedTimeId(scheduleId);
+        setSelectedCourseId(courseId);
+        console.log("Selected Schedule ID:", scheduleId);
+        console.log("Associated Course ID:", courseId);
+    };
 
-        const attendanceData = {
-            course_id: course_id,
-            subject_id: subject_id,
-            day: day,
-            date: date,
-            time: time
-        };
+    const handleAttendanceChange = (newAttendanceData) => {
+        setAttendanceData(newAttendanceData);
+        console.log("Updated attendance data:", newAttendanceData);
+        // You can send this data to the server here if needed
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent page refresh
+
+
+        if (!subjectId || !day || !timeId) {
+            alert("Please select subject, day, and time to proceed.");
+            return;
+        }
 
         try {
-            const response = await fetch(`http://localhost:8080/markAttendance`, {
+            const response = await fetch(`http://localhost:8080/markAttendance?scheduleId=${timeId}&date=${date}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(attendanceData)
+                body: JSON.stringify(attendanceData),
             });
 
             if (response.ok) {
@@ -65,9 +79,9 @@ const MarkAttendance = () => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className="container">
-                <Sidebar/>
+                <Sidebar />
                 <div className="main">
                     <div className="App">
                         <div className="FormBox">
@@ -80,19 +94,42 @@ const MarkAttendance = () => {
                                 <div className="App-content">
                                     <div className="form__inputs">
                                         <form onSubmit={handleSubmit}>
-                                            <DropdownSubjectusingTeacherWithFetch onSelect={handleSubjectSelect}
-                                                                      courseId={getCookie('userID')}/>
-                                            <DayOfWeekDropdown onSelect={handleDaySelect}/>
-                                            <input type="date" name="date"
-                                                   value={date}
-                                                   onChange={(e) => setDate(e.target.value)}/>
-                                            <button type="submit">Mark Attendance</button>
+                                            <DropdownSubjectusingTeacherWithFetch
+                                                onSelect={handleSubjectSelect}
+                                                courseId={getCookie('userID')}
+                                            />
+                                            <DayOfWeekDropdown onSelect={handleDaySelect} />
+                                            <input
+                                                type="date"
+                                                name="date"
+                                                value={date}
+                                                onChange={(e) => setDate(e.target.value)}
+                                            />
+                                            {subjectId && day && (
+                                                <DropdownTimeWithFetch
+                                                    subjectid={subjectId}
+                                                    day={day}
+                                                    onSelect={handleTimeSelect}
+                                                />
+                                            )}
+                                            {subjectId && day && timeId && attendanceData.length > 0 && (
+                                                <button type="submit">Mark Attendance</button>
+                                            )}
+
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                            {subjectId && day && timeId && (
+                                <StudentAttendanceList
+                                    courseId={courseId}
+                                    onAttendanceChange={handleAttendanceChange}
+                                />
+                            )}
+
                 </div>
             </div>
         </>

@@ -7,30 +7,29 @@ import CardButton from "../components/CardButton";
 import {useNavigate} from "react-router-dom";
 import {getCookie} from "../components/cookieUtil";
 
-const TeacherDash = () => {
+const StudentDash = () => {
     const navigate = useNavigate();
 
-    function markAttendanceFunc() {
-        navigate('/markAttendance');
-    }
-    function markExamFunc() {
-        navigate('/markExam');
-    }
     function viewAttendanceFunc() {
+        navigate('/viewStudentAttendance');
+    }
+    function viewScheduleFunc() {
         navigate('/viewAttendance');
     }
+    function viewResultFunc() {
+        navigate('/viewStudentMarks');
+    }
     useEffect(() => {
-        if (getCookie('role') !== 'teacher') {
+        if (getCookie('role') !== 'student') {
             navigate('/');
         }
     }, [navigate]);
 
     const [lectures, setLectures] = useState(0); // Initialize with a number
-    const [subjects, setSubjects] = useState(0); // Initialize with a number
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/getNoOfLecturesTeacher?teacherId=' + getCookie('userID'), {
+                const response = await fetch('http://localhost:8080/getNoOfLecturesStudent?studentId=' + getCookie('userID'), {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -44,25 +43,6 @@ const TeacherDash = () => {
                 const count = await response.json();
                 console.log(count);
                 setLectures(count); // Set lectures count
-
-            } catch (error) {
-                console.error("Error fetching lecture count:", error); // Log error
-            }
-            try {
-                const response1 = await fetch('http://localhost:8080/getNoOfSubjectsTeacher?teacherId=' + getCookie('userID'), {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                if (!response1.ok) {
-                    throw new Error("Failed to fetch lecture count.");
-                }
-
-                const count = await response1.json();
-                console.log(count);
-                setSubjects(count); // Set lectures count
 
             } catch (error) {
                 console.error("Error fetching lecture count:", error); // Log error
@@ -83,7 +63,6 @@ const TeacherDash = () => {
                             <h3>Records</h3>
                             <div className="App-content">
                                 <Card num={lectures} til={"Num OF Lectures"}/>
-                                <Card num={subjects} til={"Num OF Subjects"}/>
                             </div>
                         </div>
                     </div>
@@ -91,9 +70,9 @@ const TeacherDash = () => {
                         <div className="App-header">
                             <h3>Goto</h3>
                             <div className="App-content">
-                                <CardButton num={"M"} til={"Mark Attendance"} onclickfunc={markAttendanceFunc}/>
                                 <CardButton num={"M"} til={"View Attendance"} onclickfunc={viewAttendanceFunc}/>
-                                <CardButton num={"E"} til={"Mark Exam"} onclickfunc={markExamFunc}/>
+                                <CardButton num={"M"} til={"View Schedule"} onclickfunc={viewScheduleFunc}/>
+                                <CardButton num={"M"} til={"View Result"} onclickfunc={viewResultFunc}/>
                             </div>
                         </div>
                     </div>
@@ -103,4 +82,4 @@ const TeacherDash = () => {
     );
 };
 
-export default TeacherDash;
+export default StudentDash;

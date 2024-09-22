@@ -79,7 +79,7 @@ const AddStudent = () => {
                         <div className="FormBox">
                             <div className="FormTitle">
                                 <div className="App-header">
-                                    <h2>Add College</h2>
+                                    <h2>Add Student</h2>
                                 </div>
                             </div>
                             <div className="FormTitle">
@@ -106,23 +106,28 @@ const AddStudent = () => {
                                                 placeholder="Student Password"
                                                 value={studentData.password}
                                                 onChange={handleStudentChange}
-                                            /><br/>
+                                            />
                                             <input
                                                 type="text"
                                                 name='email'
                                                 placeholder="Student Email"
                                                 value={studentData.email}
                                                 onChange={handleStudentChange}
-                                            />
-                                            <DropdownCourseWithFetch onSelect={handleCourseSelect}/>
-                                            <input
-                                                type="text"
-                                                name='roll_no'
-                                                placeholder="Student Roll NO"
-                                                value={roll_no}
-                                                onChange={(e) => setRollNo(e.target.value)}
-                                            />
-                                            <button type="submit">Add College</button>
+                                            /><br/>
+
+                                            <center>
+                                                <DropdownCourseWithFetch onSelect={handleCourseSelect}/>
+                                                <input
+                                                    type="text"
+                                                    name='roll_no'
+                                                    placeholder="Student Roll NO"
+                                                    value={roll_no}
+                                                    onChange={(e) => setRollNo(e.target.value)}
+                                                /><br/>
+                                            </center>
+                                            <div className="form__submit">
+                                                <button type="submit">Add College</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
