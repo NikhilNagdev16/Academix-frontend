@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import logo from "../assets/img/logo.jpeg";
@@ -19,18 +19,55 @@ const WebsiteAdminDash = () => {
     function addCollegeFunc() {
         navigate('/addCollege');
     }
-
-    if (!getCookie("userID")) {
-        return null; // Render nothing while redirecting
+    function manageCollegeFunc() {
+        navigate('/manageCollege');
     }
+    const [users, setUsers] = useState("");
+    const [colleges, setColleges] = useState("");
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/getNoOfUsers', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data.");
+                }
+
+                const users = await response.json();
+                setUsers(users);
+            } catch (error) {
+
+            }
+            try {
+                const response1 = await fetch('http://localhost:8080/getNoOfColleges', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response1.ok) {
+                    throw new Error("Failed to fetch college data.");
+                }
+
+                const colleges = await response1.json();
+                setColleges(colleges);
+            } catch (error) {
+
+            }
+        };
+
+        fetchData(); // Fetch data when component mounts
+    },[]);
 
     return (
         <>
-            <Header
-                className="App-header"
-                collegeName="Indira College Of Commerce And Science"
-                collegeLogo={logo}
-            />
+            <Header/>
             <div className="container">
                 <Sidebar avatar={logo} name="Nikhil Nagdev" role="WebSite Admin" />
 
@@ -40,10 +77,8 @@ const WebsiteAdminDash = () => {
                             <h3>Records</h3>
                         </div>
                         <div className="App-content">
-                            <Card num={10} til="Total Colleges" />
-                            <Card num={100} til="Total Users" />
-                            <Card num={5} til="Inactive Users" />
-                            <Card num={90} til="Total Students" />
+                            <Card num={colleges} til="Total Colleges" />
+                            <Card num={users} til="Total Users" />
                         </div>
                     </div>
                     <div className="App">
@@ -52,7 +87,7 @@ const WebsiteAdminDash = () => {
                         </div>
                         <div className="App-content">
                             <CardButton num="+" til="Add College" onclickfunc={addCollegeFunc} />
-                            <CardButton num="%" til="Manage College" />
+                            <CardButton num="%" til="Manage College" onclickfunc={manageCollegeFunc}/>
                         </div>
                     </div>
                 </div>

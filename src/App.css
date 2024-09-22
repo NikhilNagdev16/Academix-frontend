@@ -1,3 +1,9 @@
+.homemade-apple-regular {
+    font-family: "Homemade Apple", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .loginBody{
     height: 100vh;
     display: flex;
@@ -22,6 +28,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.login__title p{
+    font-size: 30px;
+    font-color: #ba3838;
+    font-family: "Homemade Apple", system-ui;
 }
 .login__form{
     display: flex;
@@ -65,6 +76,22 @@
     background-color: #171821;
     color: white;
     width: 110%;
+    border-radius: 10px;
+}
+.form__submit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form__submit button{
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+    background-color: #171821;
+    color: white;
+    /*width: 110%;*/
     border-radius: 10px;
 }
 .forgot{
@@ -142,13 +169,15 @@
     /*justify-content: space-evenly;*/
 }
 
-.App-content{
+.App-content {
     padding: 20px;
     display: flex;
     flex-direction: row;
+
     gap: 50px;
-    /*justify-content: space-between;*/
 }
+
+
 .container{
     display: flex;
     height: 100vh;

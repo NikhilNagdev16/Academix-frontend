@@ -104,9 +104,7 @@ const AddCollege = () => {
                                 <div className="App-header">
                                     <h4>College Details</h4>
                                 </div>
-                                <div className="App-header">
-                                    <h4>College Admin Details</h4>
-                                </div>
+
                             </div>
                             <div className="FormFields">
                                 <div className="App-content">
@@ -140,13 +138,12 @@ const AddCollege = () => {
                                                 value={collegeData.college_phone}
                                                 onChange={handleCollegeChange}
                                             /><br/>
-                                            <input
-                                                type="number"
-                                                name='noOfClasses'
-                                                placeholder="No Of Classes"
-                                                value={collegeData.noOfClasses}
-                                                onChange={handleCollegeChange}
-                                            /><br/>
+                                            <div className="FormTitle">
+                                                <div className="App-header">
+                                                    <h4>College Admin Details</h4>
+                                                </div>
+
+                                            </div>
 
                                             <input
                                                 type="text"
@@ -156,21 +153,25 @@ const AddCollege = () => {
                                                 onChange={handleAdminChange}
                                             />
                                             <input
-                                                type="password"
-                                                name='password'
-                                                placeholder="Admin Password"
-                                                value={adminData.password}
-                                                onChange={handleAdminChange}
-                                            /><br/>
-                                            <input
                                                 type="text"
                                                 name='email'
                                                 placeholder="Admin Email"
                                                 value={adminData.email}
                                                 onChange={handleAdminChange}
                                             />
-
-                                            <button type="submit">Add College</button>
+                                            <br/>
+                                            <center>
+                                                <input
+                                                    type="password"
+                                                    name='password'
+                                                    placeholder="Admin Password"
+                                                    value={adminData.password}
+                                                    onChange={handleAdminChange}
+                                                /><br/>
+                                            </center>
+                                            <div className="form__submit">
+                                                <button type="submit">Add College</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
