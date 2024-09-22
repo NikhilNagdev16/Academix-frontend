@@ -113,31 +113,37 @@ const StudentMarksList = ({ subjectId, courseId }) => {
                 <td>{student.rollNo}</td>
                 <td>{student.name}</td>
                 <td>
-                    <input
-                        type="number"
-                        value={marks[student.user_id]?.internal || ""}
-                        onChange={(e) => handleMarksChange(student.user_id, "internal", e.target.value)}
-                        placeholder="Internal Marks"
-                    />
+                    <div className="form__inputs">
+                        <input
+                            type="number"
+                            value={marks[student.user_id]?.internal || ""}
+                            onChange={(e) => handleMarksChange(student.user_id, "internal", e.target.value)}
+                            placeholder="Internal Marks"
+                        />
+                    </div>
                 </td>
                 <td>
-                    <input
-                        type="number"
-                        value={marks[student.user_id]?.external || ""}
-                        onChange={(e) => handleMarksChange(student.user_id, "external", e.target.value)}
-                        placeholder="External Marks"
-                    />
+                    <div className="form__inputs">
+                        <input
+                            type="number"
+                            value={marks[student.user_id]?.external || ""}
+                            onChange={(e) => handleMarksChange(student.user_id, "external", e.target.value)}
+                            placeholder="External Marks"
+                        />
+                    </div>
                 </td>
                 <td>
-                    <input
-                        type="number"
-                        value={marks[student.user_id]?.practical || ""}
-                        onChange={(e) => handleMarksChange(student.user_id, "practical", e.target.value)}
-                        placeholder="Practical Marks"
-                    />
+                    <div className="form__inputs">
+                        <input
+                            type="number"
+                            value={marks[student.user_id]?.practical || ""}
+                            onChange={(e) => handleMarksChange(student.user_id, "practical", e.target.value)}
+                            placeholder="Practical Marks"
+                        />
+                    </div>
                 </td>
             </tr>
-        ));
+    ));
     };
 
     return (
@@ -145,24 +151,31 @@ const StudentMarksList = ({ subjectId, courseId }) => {
             <div className="App">
                 <h3>Set Maximum Marks</h3>
                 <div className="App-content">
+                    <div className="form__inputs">
                     <input
                         type="number"
                         value={maxMarks.internal}
                         onChange={(e) => handleMaxMarksChange("internal", e.target.value)}
                         placeholder="Max Internal Marks"
                     />
+                    </div>
+                    <div className="form__inputs">
                     <input
                         type="number"
                         value={maxMarks.external}
                         onChange={(e) => handleMaxMarksChange("external", e.target.value)}
                         placeholder="Max External Marks"
                     />
+                    </div>
+                    <div className="form__inputs">
                     <input
                         type="number"
                         value={maxMarks.practical}
                         onChange={(e) => handleMaxMarksChange("practical", e.target.value)}
                         placeholder="Max Practical Marks"
                     />
+                    </div>
+
                 </div>
             </div>
             <div className="App">
@@ -187,7 +200,9 @@ const StudentMarksList = ({ subjectId, courseId }) => {
             </div>
             <div className="App">
                 <div className="App-content">
+                    <div className="form__submit">
                     <button onClick={handleSubmitMarks}>Submit Marks</button>
+                    </div>
                 </div>
             </div>
         </>
